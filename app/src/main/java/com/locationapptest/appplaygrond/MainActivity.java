@@ -1,13 +1,15 @@
 package com.locationapptest.appplaygrond;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import java.util.ArrayList;
-
+//this is used to add a difference in the code
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<ReminderModel> ReminderModel = new ArrayList<>();
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        WindowCompat.setDecorFitsSystemWindows(window, false);/**/
 
         RecyclerView recyclerView = findViewById(R.id.reminderList); // create xml item as a variable
         setReminderModel();
