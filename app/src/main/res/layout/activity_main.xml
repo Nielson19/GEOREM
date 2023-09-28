@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+    <!-- general Layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<!--        This is the Top Window-->
+        <LinearLayout
+            android:id="@+id/TopWindow"
+            android:layout_width="match_parent"
+            android:layout_height="366dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+<!--This is the Title window-->
+            <LinearLayout
+                android:background="@drawable/outline_windows"
+                android:id="@+id/titleWindow"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:layout_width="50sp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Menu button"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_action_menu"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/title"
+                    android:layout_width="301sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/reminders"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="60sp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Menu button"
+                    android:padding="5sp"
+                    android:src="@drawable/ic_action_add"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+<!--the Recycler Window-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reminderList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+
+        </LinearLayout>
+
+<!--        This is the Bottom Window-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/BottomWindow"
+            android:layout_width="match_parent"
+            android:layout_height="366sp"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent">
+<!--        this is the info reminder Window-->
+            <LinearLayout
+                android:id="@+id/infoReminderWindow"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/mapWindow"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="203dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="This is the info of the reminder"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+
+<!--         this is the map window-->
+            <LinearLayout
+                android:id="@+id/mapWindow"
+                android:layout_width="205sp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/black">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="the map view"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AppPlayground</string>
+    <string name="reminders">Reminders</string>
+    <string name="reminder_title">Reminder Title</string>
+    <string name="address_reminder">Address Reminder</string>
+
+    <!-- String array for names -->
+    <string-array name="random_reminder_name">
+        <item>Reminder 1</item>
+        <item>Reminder 2</item>
+        <item>Reminder 3</item>
+        <item>Reminder 4</item>
+        <!-- Add more names here -->
+    </string-array>
+
+    <!-- String array for addresses -->
+    <string-array name="random_reminder_addresses">
+        <item>123 Main St, City</item>
+        <item>456 Elm St, Town</item>
+        <item>789 Oak St, Village</item>
+        <item>101 Pine St, Suburb</item>
+        <!-- Add more addresses here -->
+    </string-array>
+</resources>
