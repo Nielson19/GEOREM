@@ -1,5 +1,6 @@
 package com.example.neil
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -9,7 +10,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.util.ArrayList
+import com.mapbox.maps.MapView
+import com.mapbox.maps.Style
+
+var mapView: MapView? = null
 
 class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     private lateinit var titleReminderInfo: TextView
@@ -22,6 +26,11 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // mapview call
+
+        mapView = findViewById(R.id.mapView)
+        mapView?.getMapboxMap()?.loadStyleUri(Style.MAPBOX_STREETS)
 
         titleReminderInfo = findViewById(R.id.reminderTitleInfo)
         titleAddressInfo = findViewById(R.id.textAdressInfo)
@@ -61,5 +70,29 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
         // Assuming you have a method like getReminderName() in your ReminderModel class
         // Here will be the code to pass all the info detail of each item
+    }
+
+    @SuppressLint("Lifecycle")
+    override fun onStart() {
+        super.onStart()
+        mapView?.onStart()
+    }
+
+    @SuppressLint("Lifecycle")
+    override fun onStop() {
+        super.onStop()
+        mapView?.onStop()
+    }
+
+    @SuppressLint("Lifecycle")
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView?.onLowMemory()
+    }
+
+    @SuppressLint("Lifecycle")
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView?.onDestroy()
     }
 }
