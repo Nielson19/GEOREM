@@ -1,0 +1,46 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">GeoRem</string>
+    <string name="reminders">Reminders</string>
+    <string name="reminder_title">Reminder Title</string>
+    <string name="address_reminder">Address Reminder</string>
+    <string name="fill_text" tools:ignore="ExtraTranslation">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Proin at scelerisque libero. Duis auctor, felis vel ultricies venenatis, quam nisl lacinia elit, eu eleifend ipsum sem in nunc. Integer at ipsum sed nisl dignissim fermentum. In hac habitasse platea dictumst. </string>
+    <string name="fillAddress">1234 Elm Street,Maplewood, CA 98765 United States</string>
+    <string name="info_icon">Info Icon</string>
+    <string name="group">Group</string>
+    <!-- String array for names -->
+    <string-array name="random_reminder_name">
+        <item>Reminder 1</item>
+        <item>Reminder 2</item>
+        <item>Reminder 3</item>
+        <item>Reminder 4</item>
+        <item>Reminder 5</item>
+        <item>Reminder 6</item>
+        <item>Reminder 7</item>
+        <item>Reminder 8</item>
+        <item>Reminder 9</item>
+        <item>Reminder 10</item>
+        <item>Reminder 11</item>
+        <item>Reminder 12</item>
+
+        <!-- Add more names here -->
+    </string-array>
+
+    <!-- String array for addresses -->
+    <string-array name="random_reminder_addresses">
+        <item>123 Main St, City</item>
+        <item>456 Elm St, Town</item>
+        <item>456 Elm St, Town</item>
+        <item>789 Oak St, Village</item>
+        <item>789 Oak St, Village</item>
+        <item>789 Oak St, Village</item>
+        <item>789 Oak St, Village</item>
+        <item>789 Oak St, Village</item>
+        <item>101 Pine St, Suburb</item>
+        <item>101 Pine St, Suburb</item>
+        <item>101 Pine St, Suburb</item>
+        <item>101 Pine St, Suburb</item>
+
+        <!-- Add more addresses here -->
+    </string-array>
+
+</resources>
