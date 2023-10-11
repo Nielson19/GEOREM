@@ -43,8 +43,10 @@
         <!-- Add more addresses here -->
     </string-array>
 
-<!--    access token mapbox-->
+    <!--    access token mapbox-->
 
     <string name="mapbox_access_token">pk.eyJ1IjoieW9uYXRoYW5nYXJjaWFhIiwiYSI6ImNsbjlrYXc2ZjA3cmUydHBkd2FnbGJpMGcifQ.k2FFafLsFOJripSneeC-3A</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

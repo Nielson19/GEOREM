@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.neil.databinding.ActivityMainBinding
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
 
@@ -20,14 +21,14 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     private lateinit var titleAddressInfo: TextView
     private lateinit var infoWindow: LinearLayout
 
+    private lateinit var binding: ActivityMainBinding
+
     private lateinit var adapter: RecyclerAdapterReminder
     private val reminderModelList = ArrayList<ReminderModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // mapview call
 
         mapView = findViewById(R.id.mapView)
         mapView?.getMapboxMap()?.loadStyleUri(Style.MAPBOX_STREETS)
@@ -40,10 +41,12 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         setReminderModel()
 
         // Initialize the adapter as a member variable
+
         adapter = RecyclerAdapterReminder(this, reminderModelList, this)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
     }
 
     private fun setReminderModel() {
@@ -54,6 +57,10 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
             reminderModelList.add(ReminderModel(reminderNames[i], addresses[i]))
         }
     }
+
+    // this is the pop up window section for adding reminders
+
+
 
     override fun onItemClick(position: Int) {
         // Use the member variable 'adapter' to get the item

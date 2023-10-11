@@ -9,20 +9,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
+        android:padding="30dp">
 
+<!--        Main Icon-->
 
         <ImageView
             android:id="@+id/infoIcon"
-            android:layout_width="100sp"
-            android:layout_height="100sp"
-            android:layout_marginTop="30dp"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             app:srcCompat="@drawable/ic_icon_list"
             android:contentDescription="@string/info_icon" />
 
+<!--        Reminder Title-->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -30,33 +32,37 @@
             android:layout_marginTop="20sp"
             android:text="@string/reminder_title"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--        Form Frame-->
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/formFrame"
             android:layout_width="match_parent"
             android:layout_height="0sp"
-            android:padding="40sp"
+            android:paddingHorizontal="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/infoIcon"
             app:layout_constraintVertical_bias="0.2"
             tools:layout_editor_absoluteX="120dp">
 
+<!--            Group Title-->
             <TextView
                 android:id="@+id/groupInfoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/group"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/PopUpTextSize"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="137dp"
+                app:layout_constraintTop_toBottomOf="@id/editTextPostalAddress"
                 tools:ignore="MissingConstraints" />
+
+            <!--            Notes Title-->
 
             <TextView
                 android:id="@+id/notesInfoText"
@@ -64,11 +70,12 @@
                 android:layout_height="wrap_content"
                 android:text="Notes"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/PopUpTextSize"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="282dp"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toBottomOf="@id/editTextGroupName"
+                tools:ignore="HardcodedText,MissingConstraints" />
+
+            <!--           Address Title-->
 
             <TextView
                 android:id="@+id/addressInfoText"
@@ -76,11 +83,14 @@
                 android:layout_height="wrap_content"
                 android:text="Address"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/PopUpTextSize"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/editTextPostalAddress"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+<!--            Edit text Address-->
 
             <EditText
                 android:id="@+id/editTextPostalAddress"
@@ -91,20 +101,23 @@
                 android:hint="555 Elm 27th Ave Finnish"
                 android:inputType="textPostalAddress"
                 android:textColor="@color/white"
+                android:textSize="@dimen/PopUpTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="64dp"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toBottomOf="@id/addressInfoText"
+                tools:ignore="HardcodedText,MissingConstraints" />
+
+            <!--            Edit text Group Name-->
 
             <EditText
-                android:id="@+id/editTextText2"
+                android:id="@+id/editTextGroupName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/outlineColor"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="Group Name"
-                app:layout_constraintBottom_toTopOf="@+id/notesInfoText"
+                android:textSize="@dimen/PopUpTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/groupInfoText"
@@ -115,16 +128,36 @@
                 android:id="@+id/editTextTextMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="Notes.."
+                android:hint="Notes..."
                 android:textColorHint="@color/outlineColor"
                 android:ems="10"
                 android:gravity="start|top"
+                android:textSize="@dimen/PopUpTextSize"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notesInfoText"
                 tools:ignore="Autofill,HardcodedText" />
+
+            <FrameLayout
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine">
+
+                <com.mapbox.maps.MapView
+                    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    mapbox:mapbox_cameraTargetLat="40.7128"
+                    mapbox:mapbox_cameraTargetLng="-74.0060"
+                    mapbox:mapbox_cameraZoom="9.0"
+                    />
+
+            </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
