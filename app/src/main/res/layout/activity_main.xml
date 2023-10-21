@@ -2,12 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     tools:context=".MainActivity">
     <!-- general Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/MainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -18,19 +21,19 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/BottomWindow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
             >
 
-<!--This is the Title window-->
+            <!--This is the Title window-->
             <LinearLayout
-                android:background="@drawable/outline_windows"
                 android:id="@+id/titleWindow"
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
+                android:background="@drawable/outline_windows"
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
@@ -43,7 +46,6 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/title"
                     android:layout_width="301sp"
                     android:layout_height="wrap_content"
@@ -52,7 +54,8 @@
                     android:text="@string/reminders"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="60sp"
@@ -64,13 +67,12 @@
 
 
             </LinearLayout>
-<!--the Recycler Window-->
+            <!--the Recycler Window-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reminderList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layoutAnimation="@anim/layout_animation_element"
-                />
+                android:layoutAnimation="@anim/layout_animation_element" />
 
 
         </LinearLayout>
@@ -80,37 +82,36 @@
             android:id="@+id/BottomWindow"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:orientation="horizontal"
             android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            >
-<!--            android:layoutAnimation="@anim/layout_animation_bottom"-->
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <!--            android:layoutAnimation="@anim/layout_animation_bottom"-->
 
 
             <!--this is the info reminder Window-->
 
             <LinearLayout
                 android:id="@+id/infoReminderWindow"
-                android:layout_height="match_parent"
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/mapWindow"
-                app:layout_constraintTop_toTopOf="parent"
+                android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:padding="20dp">
+                app:layout_constraintEnd_toStartOf="@+id/mapWindow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-<!--                Title of the Reminder-->
+                <!--                Title of the Reminder-->
                 <TextView
                     android:id="@+id/reminderTitleInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="22sp"
                     android:gravity="top"
                     android:text="Reminder Title"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -128,25 +129,28 @@
                     android:text="Group Name"
                     android:textStyle="italic"
                     tools:ignore="HardcodedText" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_icon_group"/>
+                    android:src="@drawable/ic_icon_group" />
+
                 <TextView
-                    android:layout_marginTop="10sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
                     android:text="Notes"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fill_text"
                     android:textSize="12sp"
                     android:textStyle="italic">
-                </TextView>
 
+                </TextView>
 
 
             </LinearLayout>
@@ -157,22 +161,37 @@
                 android:id="@+id/mapWindow"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:background="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/infoReminderWindow"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toEndOf="@+id/infoReminderWindow"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <!--Button to expand map view                -->
+                <ImageButton
+                    android:id="@+id/expand_button"
+                    android:layout_width="50dp"
+                    android:layout_height="62dp"
+                    android:backgroundTint="@color/transparent"
+                    android:contentDescription="ExpandMap"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/expand_button"
+                    app:tint="@color/white"
+                    tools:srcCompat="@drawable/expand_button"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="the map view"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:text="the map view"
                     android:textColor="@color/white"
                     tools:ignore="HardcodedText" />
+
 
             </FrameLayout>
 

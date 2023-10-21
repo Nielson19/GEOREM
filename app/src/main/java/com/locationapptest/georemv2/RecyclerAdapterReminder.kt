@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.locationapptest.georemv2.R
 import com.locationapptest.georemv2.RecyclerAdapterReminder.MyViewHolder
 
 class RecyclerAdapterReminder(
