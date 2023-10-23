@@ -60,6 +60,8 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
     // this is the pop up window section for adding reminders
 
+    
+
 
 
     override fun onItemClick(position: Int) {
