@@ -2,7 +2,7 @@
 <resources>
     <dimen name="expanded_height">830dp</dimen>
     <dimen name="original_map_height">350dp</dimen>
-    <dimen name="original_map_width">207dp</dimen>
+    <dimen name="original_map_width">208dp</dimen>
     <dimen name="original_bottom_height">350dp</dimen>
     <dimen name="expanded_width">420dp</dimen>
 
