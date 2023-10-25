@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
     <!-- general Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,9 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/BottomWindow"
-
-            >
+            app:layout_constraintBottom_toTopOf="@id/BottomWindow">
 
             <!--This is the Title window-->
             <LinearLayout
@@ -34,19 +33,19 @@
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
-                <ImageView
-                    android:layout_width="50sp"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Menu button"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_action_menu"
-                    tools:ignore="HardcodedText" />
+<!--                <ImageView-->
+<!--                    android:layout_width="50sp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:contentDescription="Menu button"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:src="@drawable/ic_action_menu"-->
+<!--                    tools:ignore="HardcodedText" />-->
 
                 <TextView
                     android:textStyle="bold"
                     android:id="@+id/title"
-                    android:layout_width="301sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/reminders"

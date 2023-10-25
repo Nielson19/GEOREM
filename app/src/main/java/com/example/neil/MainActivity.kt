@@ -5,18 +5,25 @@ import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neil.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
 
 var mapView: MapView? = null
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), OnItemCLickReminder {
+
+    //variables
+
     private lateinit var titleReminderInfo: TextView
     private lateinit var titleAddressInfo: TextView
     private lateinit var infoWindow: LinearLayout
@@ -26,6 +33,13 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     private lateinit var adapter: RecyclerAdapterReminder
     private val reminderModelList = ArrayList<ReminderModel>()
 
+    private lateinit var bottomMenuAddRemItem: BottomNavigationView
+    //FUNCTIONS
+
+    //Bottom menu selection space
+
+
+    // execution when the app opens
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,9 +50,34 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         titleReminderInfo = findViewById(R.id.reminderTitleInfo)
         titleAddressInfo = findViewById(R.id.textAdressInfo)
         infoWindow = findViewById(R.id.infoReminderWindow)
+        bottomMenuAddRemItem = findViewById(R.id.bottomNavigationView)
 
         val recyclerView: RecyclerView = findViewById(R.id.reminderList)
         setReminderModel()
+
+
+        // bottom menu buttons executable
+
+        bottomMenuAddRemItem.setOnNavigationItemReselectedListener { item ->
+            when(item.itemId){
+                R.id.addRem -> { //first selection in the bottom menu
+                    showPopUp()
+                    true
+                }
+                R.id.mapIcon -> {
+                    // map icon executable
+                }
+                R.id.settingsIcon ->{
+
+                    // setting icon executable
+
+                }
+                // add other menu items if needed
+
+                else -> false // if you have items ypu don't handle here
+
+            }
+        }
 
         // Initialize the adapter as a member variable
 
@@ -49,6 +88,46 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
     }
 
+
+
+
+    // Add reminder window pop up function
+    @SuppressLint("ResourceType", "WrongViewCast")
+    private fun showPopUp(){
+
+        // variables
+        val builder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.pop_up_addrem, null)
+
+        val cancelButton = dialogView.findViewById<Button>(R.id.cancelButton)
+        val addButton = dialogView.findViewById<Button>(R.id.addButton)
+
+        builder.setView(dialogView) // adds the layout into the pop up
+
+        // executes the display of the pop up
+
+        val dialog = builder.create()
+        dialog.show()
+
+        // functions / executables inside the popUp
+
+        cancelButton.setOnClickListener{
+            dialog.dismiss()
+        }
+
+        addButton.setOnClickListener{
+            // TODO Yonathan: add reminder to database
+            // TODO Niel: add reminder information in the recycler
+
+        }
+
+
+
+
+    }
+
+    // database of the RecyclerView
     private fun setReminderModel() {
         val reminderNames = resources.getStringArray(R.array.random_reminder_name)
         val addresses = resources.getStringArray(R.array.random_reminder_addresses)
@@ -58,12 +137,7 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         }
     }
 
-    // this is the pop up window section for adding reminders
-
-    
-
-
-
+    // generate animation when there is a selection in the recyclerView
     override fun onItemClick(position: Int) {
         // Use the member variable 'adapter' to get the item
         val selectedItem: ReminderModel = adapter.getItem(position)
@@ -81,6 +155,10 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         // Here will be the code to pass all the info detail of each item
     }
 
+
+
+
+    // mapbox behavior
     @SuppressLint("Lifecycle")
     override fun onStart() {
         super.onStart()

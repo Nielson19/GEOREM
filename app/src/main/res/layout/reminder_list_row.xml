@@ -18,12 +18,12 @@
 
             <ImageView
                 android:id="@+id/LocationIcon"
+                android:scaleType="centerCrop"
+                android:layout_width="60dp"
+                android:layout_height="0dp"
                 android:contentDescription="location image for element in list"
-                android:layout_width="57dp"
-                android:layout_height="52dp"
-                android:padding="10sp"
-                android:src="@drawable/ic_icon_list"
-                tools:ignore="HardcodedText" />
+                android:src="@mipmap/ic_list_icon_foreground"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/reminderAddress"
@@ -41,7 +41,7 @@
                 android:id="@+id/reminderTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/reminder_title"
                 android:textColor="@color/white"
@@ -52,11 +52,22 @@
 
             <ImageView
                 android:id="@+id/editIcon"
-                android:layout_width="55dp"
-                android:layout_height="53dp"
-                android:padding="10sp"
-                android:src="@drawable/ic_icon_list_edit"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:layout_width="77dp"
+                android:padding="15dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_edit_foreground"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/starIcon"
+                android:layout_width="77dp"
+                android:layout_height="0dp"
+                android:padding="15dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_star_empty_icon_foreground"
+                app:layout_constraintEnd_toStartOf="@id/editIcon"
+                tools:layout_editor_absoluteY="0dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

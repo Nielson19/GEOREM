@@ -2,29 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
     android:background="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp">
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-<!--        Main Icon-->
+        <!--        Main Icon-->
 
         <ImageView
             android:id="@+id/infoIcon"
             android:layout_width="50sp"
             android:layout_height="50sp"
             android:layout_marginTop="5dp"
+            android:contentDescription="@string/info_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:srcCompat="@drawable/ic_icon_list"
-            android:contentDescription="@string/info_icon" />
+            app:srcCompat="@mipmap/ic_list_icon_foreground" />
 
-<!--        Reminder Title-->
+        <!--        Reminder Title-->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -38,19 +39,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        Form Frame-->
+        <!--        Save Button-->
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="HardcodedText,MissingConstraints" />
+
+
+        <!--        Cancel Button-->
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="HardcodedText,MissingConstraints" />
+
+
+        <!--        Form Frame-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/formFrame"
             android:layout_width="match_parent"
-            android:layout_height="0sp"
+            android:layout_height="wrap_content"
             android:paddingHorizontal="40sp"
+            android:paddingBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/infoIcon"
             app:layout_constraintVertical_bias="0.2"
             tools:layout_editor_absoluteX="120dp">
 
-<!--            Group Title-->
+            <!--            Group Title-->
             <TextView
                 android:id="@+id/groupInfoText"
                 android:layout_width="wrap_content"
@@ -90,17 +116,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="HardcodedText" />
 
-<!--            Edit text Address-->
+            <!--            Edit text Address-->
 
             <EditText
                 android:id="@+id/editTextPostalAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/outlineColor"
                 android:ems="10"
                 android:hint="555 Elm 27th Ave Finnish"
                 android:inputType="textPostalAddress"
                 android:textColor="@color/white"
+                android:textColorHint="@color/outlineColor"
                 android:textSize="@dimen/PopUpTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,48 +139,41 @@
                 android:id="@+id/editTextGroupName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/outlineColor"
+                android:autofillHints=""
                 android:ems="10"
-                android:inputType="text"
                 android:hint="Group Name"
+                android:inputType="text"
+                android:textColorHint="@color/outlineColor"
                 android:textSize="@dimen/PopUpTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/groupInfoText"
-                android:autofillHints=""
                 tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Notes..."
-                android:textColorHint="@color/outlineColor"
                 android:ems="10"
                 android:gravity="start|top"
-                android:textSize="@dimen/PopUpTextSize"
+                android:hint="Notes..."
                 android:inputType="textMultiLine"
+                android:textColorHint="@color/outlineColor"
+                android:textSize="@dimen/PopUpTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notesInfoText"
                 tools:ignore="Autofill,HardcodedText" />
 
             <FrameLayout
-                android:layout_marginTop="24dp"
+                android:id="@+id/mapFrame"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine">
 
-                <com.mapbox.maps.MapView
-                    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/mapView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    mapbox:mapbox_cameraTargetLat="40.7128"
-                    mapbox:mapbox_cameraTargetLng="-74.0060"
-                    mapbox:mapbox_cameraZoom="9.0"
-                    />
 
             </FrameLayout>
 

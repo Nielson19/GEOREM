@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/addRem"
         android:icon="@drawable/custom_addrem_icon"
         android:iconTint="@color/white"
-        tools:ignore="HardcodedText,MenuTitle">
+        tools:ignore="AlwaysShowAction,HardcodedText,MenuTitle">
     </item>
 
     <item
@@ -14,6 +15,7 @@
         android:iconTint="@color/white"
         tools:ignore="HardcodedText,MenuTitle">
     </item>
+
     <item
         android:id="@+id/settingsIcon"
         android:icon="@mipmap/ic_settings_foreground"

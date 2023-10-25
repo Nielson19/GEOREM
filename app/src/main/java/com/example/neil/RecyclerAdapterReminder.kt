@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -16,8 +17,7 @@ class RecyclerAdapterReminder(
     clickReminderListeners: OnItemCLickReminder
 ) : RecyclerView.Adapter<RecyclerAdapterReminder.MyViewHolder>() {
     private val clickReminderListeners: OnItemCLickReminder
-    var selectedItem =
-        RecyclerView.NO_POSITION // Initialize with no selection for background selection
+    var selectedItem = RecyclerView.NO_POSITION // Initialize with no selection for background selection
 
     init {
         // used to inflate the layout
@@ -57,13 +57,32 @@ class RecyclerAdapterReminder(
 
     inner class MyViewHolder(itemView: View, listener: OnItemCLickReminder?) :
         RecyclerView.ViewHolder(itemView) {
+        //TODO create variables and actions for the icon color and use the edit icon to go to the edit window
         //assigned values to the views we created in the recycler_list_row layout file
         // kinda like onCrease class
-        // ImageView imageView
+
+        private var starIcon: ImageView = itemView.findViewById(R.id.starIcon)
         var addressText: TextView
         var reminderText: TextView
+        private var isImage1 = true;
 
-        init {
+        init { //this is where you execute the variables in the list template
+            starIcon.setImageResource(R.mipmap.ic_star_empty_icon_foreground)
+            starIcon.setOnClickListener {
+                // Change the image when the ImageView is clicked
+                isImage1 = if(isImage1){
+                    starIcon.setImageResource(R.mipmap.ic_star_full_icon_foreground)
+                    false
+                } else{
+                    starIcon.setImageResource(R.mipmap.ic_star_empty_icon_foreground)
+                    true
+                }
+
+                //TODO add the current reminder to a database that keeps the favorite reminders
+
+
+            }
+
 
             // making the xml ids into variables to make them dynamic
             addressText = itemView.findViewById<TextView>(R.id.reminderAddress)
