@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neil.databinding.ActivityMainBinding
@@ -34,7 +35,9 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var adapter: RecyclerAdapterReminder
+    private lateinit var adapter2: AdapterGroupList
     private val reminderModelList = ArrayList<ReminderModel>()
+    private val reminderGroupList = ArrayList<groupListModel>()
 
     private lateinit var bottomMenuAddRemItem: BottomNavigationView
 
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
 
     // execution when the app opens
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -67,8 +71,13 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         infoWindow = findViewById(R.id.infoReminderWindow)
         bottomMenuAddRemItem = findViewById(R.id.bottomNavigationView)
 
+        val recyclerViewList: RecyclerView = findViewById(R.id.recyclerViewListGroup)
         val recyclerView: RecyclerView = findViewById(R.id.reminderList)
-        setReminderModel()
+//        setReminderModel() // this runs the recyclerView
+        setGroupListModel()
+
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacingRecyclerView) // Adjust the dimension as needed
+        recyclerView.addItemDecoration(ItemDecoration(2, spacingInPixels))
 
         // Initialize the FrameLayout and Button
         mapWindow = findViewById(R.id.mapWindow)
@@ -110,6 +119,11 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter2 = AdapterGroupList(this, reminderGroupList)
+
+        recyclerView.adapter = adapter2
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
     }
 
@@ -163,8 +177,6 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
 
     }
-
-
 
 
     // function to minimize the map
@@ -269,6 +281,16 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         for (i in reminderNames.indices) {
             reminderModelList.add(ReminderModel(reminderNames[i], addresses[i]))
         }
+    }
+
+    private fun setGroupListModel(){
+        val groupListName = resources.getStringArray(R.array.group_list)
+        val groupAmountRem = resources.getIntArray(R.array.group_list_int)
+
+        for (i in groupListName.indices){
+            reminderGroupList.add(groupListModel(groupListName[i],groupAmountRem[i]))
+        }
+
     }
 
     // generate animation when there is a selection in the recyclerView

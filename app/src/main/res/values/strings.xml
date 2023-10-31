@@ -43,6 +43,30 @@
         <!-- Add more addresses here -->
     </string-array>
 
+    <string-array name="group_list">
+        <item>Favorites</item>
+        <item>Active</item>
+        <item>Tomorrow</item>
+        <item>All</item>
+        <item>Favorites</item>
+        <item>Active</item>
+        <item>Tomorrow</item>
+        <item>All</item>
+
+
+    </string-array>
+
+    <integer-array name="group_list_int">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>5</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>5</item>
+    </integer-array>
+
     <!--    access token mapbox-->
 
     <string name="mapbox_access_token">pk.eyJ1IjoieW9uYXRoYW5nYXJjaWFhIiwiYSI6ImNsbjlrYXc2ZjA3cmUydHBkd2FnbGJpMGcifQ.k2FFafLsFOJripSneeC-3A</string>

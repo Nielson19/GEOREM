@@ -56,12 +56,30 @@
 
             </LinearLayout>
             <!--the Recycler Window-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="10dp"
+                >
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reminderList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layoutAnimation="@anim/layout_animation_element"
                 />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewListGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/layout_animation_element"
+                app:layout_constraintTop_toBottomOf="@id/titleWindow"
+                tools:ignore="NotSibling" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
         </LinearLayout>

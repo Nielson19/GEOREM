@@ -64,7 +64,7 @@ class RecyclerAdapterReminder(
         private var starIcon: ImageView = itemView.findViewById(R.id.starIcon)
         var addressText: TextView
         var reminderText: TextView
-        private var isImage1 = true;
+        private var isImage1 = true
 
         init { //this is where you execute the variables in the list template
             starIcon.setImageResource(R.mipmap.ic_star_empty_icon_foreground)
