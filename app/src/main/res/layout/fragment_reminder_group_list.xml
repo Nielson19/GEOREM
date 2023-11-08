@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/listFragmentContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <!-- general Layout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--This is the Top Window-->
+            <LinearLayout
+                android:id="@+id/TopWindow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/BottomWindow">
+
+                <!--This is the Title window-->
+                <LinearLayout
+                    android:background="@drawable/outline_windows"
+                    android:id="@+id/titleWindow"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/reminders"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <!--the Recycler Window-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="10dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/reminderList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layoutAnimation="@anim/layout_animation_element"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            </LinearLayout>
+
+            <!--This is the Bottom Window-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/BottomWindow"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <!--this is the info reminder Window-->
+
+                <LinearLayout
+                    android:id="@+id/infoReminderWindow"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mapWindow"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/flFragment"
+                    android:padding="20dp">
+
+                    <!--                Title of the Reminder-->
+                    <TextView
+                        android:id="@+id/reminderTitleInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:gravity="top"
+                        android:text="Reminder Title"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/textAddressInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fillAddress"
+                        android:textColor="@color/outlineColor"
+                        android:textStyle="italic"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Group Name"
+                        android:textStyle="italic"
+                        tools:ignore="HardcodedText" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_icon_group"
+                        android:contentDescription ="IconGroup"
+                        tools:ignore="HardcodedText" />
+                    <TextView
+                        android:layout_marginTop="10sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notes"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fill_text"
+                        android:textSize="12sp"
+                        android:textStyle="italic">
+                    </TextView>
+
+
+
+
+
+                </LinearLayout>
+
+                <!--this is the map window-->
+
+                <FrameLayout
+                    android:id="@+id/mapWindow"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:background="@color/black"
+                    app:layout_constraintStart_toEndOf="@+id/infoReminderWindow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/flFragment">
+
+
+                    <com.mapbox.maps.MapView
+                        xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/mapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        mapbox:mapbox_cameraTargetLat="40.7128"
+                        mapbox:mapbox_cameraTargetLng="-74.0060"
+                        mapbox:mapbox_cameraZoom="9.0"
+                        />
+
+                </FrameLayout>
+
+
+<!--                ???? -->
+
+                <FrameLayout
+                    android:id="@+id/flFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+
+                <!--                Bottom navigation window -->
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNavigationView"
+                    android:layout_width="match_parent"
+                    android:background="@color/background"
+                    app:itemIconTint="@color/white"
+                    android:padding="0dp"
+                    app:itemIconSize="70dp"
+                    app:labelVisibilityMode="labeled"
+                    app:itemActiveIndicatorStyle="@color/white"
+                    android:layout_height="70dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:menu="@menu/bottom_nav_menu"/>
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    Recycler View List when I created the fragment -->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/list"-->
+<!--        android:name="com.example.neil.ReminderListFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
+<!--        app:layoutManager="LinearLayoutManager"-->
+<!--        tools:context=".ReminderListFragment"-->
+<!--        tools:listitem="@layout/fragment_reminder_list_item" />-->

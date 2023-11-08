@@ -33,14 +33,6 @@
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
-<!--                <ImageView-->
-<!--                    android:layout_width="50sp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:contentDescription="Menu button"-->
-<!--                    android:padding="5dp"-->
-<!--                    android:src="@drawable/ic_action_menu"-->
-<!--                    tools:ignore="HardcodedText" />-->
-
                 <TextView
                     android:textStyle="bold"
                     android:id="@+id/title"
@@ -53,21 +45,18 @@
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
-
             </LinearLayout>
             <!--the Recycler Window-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingVertical="10dp"
-                >
+                android:paddingVertical="10dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reminderList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layoutAnimation="@anim/layout_animation_element"
-                />
+                android:layoutAnimation="@anim/layout_animation_element"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewListGroup"
@@ -121,7 +110,7 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/textAdressInfo"
+                    android:id="@+id/textAddressInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fillAddress"
@@ -166,15 +155,14 @@
 
                 <FrameLayout
                 android:id="@+id/mapWindow"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 android:background="@color/black"
                 app:layout_constraintStart_toEndOf="@+id/infoReminderWindow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/flFragment"
-                >
+                    app:layout_constraintBottom_toTopOf="@+id/flFragment">
 
 
                     <com.mapbox.maps.MapView

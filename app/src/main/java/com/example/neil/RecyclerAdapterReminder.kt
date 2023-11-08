@@ -1,7 +1,6 @@
 package com.example.neil
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class RecyclerAdapterReminder(
-    private var context: Context,
+    private var context: ReminderListFragment,
     private var reminderModels: ArrayList<ReminderModel>,
     clickReminderListeners: OnItemCLickReminder
 ) : RecyclerView.Adapter<RecyclerAdapterReminder.MyViewHolder>() {
@@ -26,7 +25,7 @@ class RecyclerAdapterReminder(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         // this is where you inflate the layout (Giving a look to our rows)
-        val inflater = LayoutInflater.from(context)
+        val inflater = LayoutInflater.from(context.requireContext())
         val view: View = inflater.inflate(R.layout.reminder_list_row, parent, false)
         return MyViewHolder(view, clickReminderListeners)
     }
