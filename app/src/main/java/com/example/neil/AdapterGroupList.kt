@@ -25,7 +25,7 @@ class AdapterGroupList(private val context: Context, private val groupModel: Lis
 
         holder.itemView.setOnClickListener {
 //            itemClickListener.onGroupItemClicked(groupItem)
-            //TODO continue here
+            //TODO Niel:continue here
         }
 
         holder.itemView.setOnClickListener(){

@@ -26,67 +26,88 @@ var mapView: MapView? = null
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
-    //variables
+    //TODO//////////////////////////////VARIABLES //////////////////////////////////////////////////
 
-    private lateinit var titleReminderInfo: TextView
-    private lateinit var titleAddressInfo: TextView
-    private lateinit var infoWindow: LinearLayout
+    private lateinit var titleReminderInfo: TextView // variable that is going to store the title of reminder
+    private lateinit var titleAddressInfo: TextView // variable that is going to store the address of the reminder
+    private lateinit var infoWindow: LinearLayout // ??
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var adapter2: AdapterGroupList
 
-    private val reminderGroupList = ArrayList<groupListModel>()
+    private val reminderGroupList = ArrayList<groupListModel>() // this is use to populate the reminder groups with the data
 
-    private lateinit var bottomMenuAddRemItem: BottomNavigationView
+    private lateinit var bottomMenuAddRemItem: BottomNavigationView // ??
 
     //Variables For expanding the map
+
     private lateinit var mapWindow: FrameLayout
     private lateinit var bottomWindow: ConstraintLayout
 
     private var originalHeightMap: Int = 0
     private var originalWidth: Int = 0
     private var originalHeight2: Int = 0
+
     //variable used as a flag
+
     private var isExpanded = false
 
-    //FUNCTIONS
-
-    //Bottom menu selection space
-
-
-    // execution when the app opens
+    //TODO/////////////ON CREATE FUNCTION ///////////////////////////////////////////////////////
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ////////////////////////////////RECYCLER VIEW //////////////////////////////
+
+        val recyclerViewList: RecyclerView = findViewById(R.id.recyclerViewListGroup) // created the variable in relation to the xml id
+        val recyclerView: RecyclerView = findViewById(R.id.reminderList) // created the variable in relation to the xml id
+        adapter2 = AdapterGroupList(this, reminderGroupList)
+
+//        setReminderModel() // initiates the population of the recycler view
+
+        setGroupListModel() // calls the algorithm to populate the back end array list with the current data
+
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacingRecyclerView) // Adjust the dimension as needed in the recycler
+        recyclerView.addItemDecoration(ItemDecoration(2, spacingInPixels))
+
+        // Initialize the adapter as a member variable
+
+        adapter2.setOnGroupItemClickListener(object : AdapterGroupList.OnGroupItemClickListener() {
+            fun onGroupItemClicked(groupItem: groupListModel) {
+
+                val fragment = ReminderListFragment()
+
+                // Perform the fragment transaction to replace the current fragment
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.main_layout, fragment) // R.id.fragment_container is the container in your activity's layout
+                transaction.addToBackStack(null) // Add the transaction to the back stack
+                transaction.commit()
+
+                // Handle the click action here, e.g., open another RecyclerView
+            }
+        })
+
+        recyclerView.adapter = adapter2
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
+
+
+        ////////////////////////////////MAP////////////////////////////////////////
+
+        //map variables
+
         mapView = findViewById(R.id.mapView)
         mapView?.getMapboxMap()?.loadStyleUri(Style.MAPBOX_STREETS)
 
+
+        ////////////////////////////////BOTTOM MENU////////////////////////////////////////
+
+        // bottom menu variables
+
         bottomMenuAddRemItem = findViewById(R.id.bottomNavigationView)
 
-        val recyclerViewList: RecyclerView = findViewById(R.id.recyclerViewListGroup)
-        val recyclerView: RecyclerView = findViewById(R.id.reminderList)
-
-//        setReminderModel() // this runs the recyclerView
-
-        setGroupListModel()
-
-        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacingRecyclerView) // Adjust the dimension as needed
-        recyclerView.addItemDecoration(ItemDecoration(2, spacingInPixels))
-
-        // Initialize the FrameLayout and Button
-
-        mapWindow = findViewById(R.id.mapWindow)
-        bottomWindow=findViewById(R.id.BottomWindow)
-
-        originalHeightMap = mapWindow.height
-        originalWidth = mapWindow.width
-        originalHeight2 = bottomWindow.height
-
-
-        // bottom menu buttons executable
+        // bottom menu buttons executables
 
         bottomMenuAddRemItem.setOnNavigationItemReselectedListener { item ->
             when(item.itemId){
@@ -111,34 +132,29 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
             }
         }
 
-        // Initialize the adapter as a member variable
+        ///////////////MAP EXPANSION//////////////////////////////////////////
 
-        adapter2 = AdapterGroupList(this, reminderGroupList)
+        mapWindow = findViewById(R.id.mapWindow) // initiate the frame layout
+        bottomWindow = findViewById(R.id.BottomWindow) // initiate the button
 
-        adapter2.setOnGroupItemClickListener(object : AdapterGroupList.OnGroupItemClickListener() {
-            fun onGroupItemClicked(groupItem: groupListModel) {
+        //collects the variables with original sizes
+        //TODO Jesus: check here if you can change to match parent instead of a number
 
-                val fragment = ReminderListFragment()
-
-                // Perform the fragment transaction to replace the current fragment
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.main_layout, fragment) // R.id.fragment_container is the container in your activity's layout
-                transaction.addToBackStack(null) // Add the transaction to the back stack
-                transaction.commit()
-
-                // Handle the click action here, e.g., open another RecyclerView
-            }
-        })
-
-
-        recyclerView.adapter = adapter2
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        originalHeightMap = mapWindow.height
+        originalWidth = mapWindow.width
+        originalHeight2 = bottomWindow.height
 
     }
 
-    //    expand map function
-    //TODO Jesus: Fix the expansion to match the with and compile everything into a class
-    //to organize it
+
+    //TODO Jesus: Fix the expansion to match the with and compile everything into a class to organize it
+
+
+    //TODO/////////////BOTTOM MENU EXECUTABLES FUNCTIONS/////////////////////////////////////
+
+    /////////////MAP EXPANSION FUNCTIONS ///////////////////////////////////////////////////
+
+    //TODO Jesus: Fix the expansion to match the with and compile everything into a class to organize it
     @SuppressLint("Recycle")
     private fun expandFrameLayout() {
         // Define the original height and width for the mapWindow
@@ -244,10 +260,9 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         // Toggle the isExpanded flag AFTER the animation is complete
         isExpanded = !isExpanded
     }
-
-
-
     // Add reminder window pop up function
+
+    //////////////POP UP FUNCTIONS /////////////////////////////////////////////////////////
     @SuppressLint("ResourceType", "WrongViewCast")
     private fun showPopUp(){
 
@@ -281,8 +296,8 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     }
 
 
-    // database of the RecyclerView
 
+    /////////// RECYCLER VIEW FUNCTIONS ////////////////////////////////////////////////////
     private fun setGroupListModel(){
         val groupListName = resources.getStringArray(R.array.group_list)
         val groupAmountRem = resources.getIntArray(R.array.group_list_int)
@@ -293,25 +308,13 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
     }
 
-    // generate animation when there is a selection in the recyclerView
-//    override fun onItemClick(position: Int) {
-//        // Use the member variable 'adapter' to get the item
-//        val selectedItem: ReminderModel = adapter.getItem(position)
-//        val fadeInAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.info_slide_left)
-//        val fadeInAnimationLayout: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(this, R.anim.layout_animation_info)
-//
-//        // Fades in new selection variables
-//        infoWindow.layoutAnimation = fadeInAnimationLayout
-//
-//        // Collects from the database to add in the text
-//        titleReminderInfo.text = selectedItem.reminder
-//        titleAddressInfo.text = selectedItem.address
-//
-//        // Assuming you have a method like getReminderName() in your ReminderModel class
-//        // Here will be the code to pass all the info detail of each item
-//    }
+//    click behavior on each element in the list group
+    override fun onItemClick(position: Int) {
+        TODO("Not yet implemented")
+    }
 
-    // mapbox behavior
+    //TODO//////// MAP FUNCTIONS///////////////////////////////////////////////////////////////
+
     @SuppressLint("Lifecycle")
     override fun onStart() {
         super.onStart()
@@ -335,8 +338,7 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
         super.onDestroy()
         mapView?.onDestroy()
     }
-//    click behavior on each element in the list group
-    override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
-    }
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
