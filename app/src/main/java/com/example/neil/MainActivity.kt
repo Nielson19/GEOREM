@@ -26,7 +26,7 @@ var mapView: MapView? = null
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
-    //TODO//////////////////////////////VARIABLES //////////////////////////////////////////////////
+    //TODO//////////////////////////////VARIABLES//////////////////////////////////////////////////
 
     private lateinit var titleReminderInfo: TextView // variable that is going to store the title of reminder
     private lateinit var titleAddressInfo: TextView // variable that is going to store the address of the reminder
@@ -139,6 +139,7 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
 
         //collects the variables with original sizes
         //TODO Jesus: check here if you can change to match parent instead of a number
+        //TODO Jesus: Fix the expansion to match the with and compile everything into a class to organize it
 
         originalHeightMap = mapWindow.height
         originalWidth = mapWindow.width
@@ -147,14 +148,12 @@ class MainActivity : AppCompatActivity(), OnItemCLickReminder {
     }
 
 
-    //TODO Jesus: Fix the expansion to match the with and compile everything into a class to organize it
 
 
     //TODO/////////////BOTTOM MENU EXECUTABLES FUNCTIONS/////////////////////////////////////
 
     /////////////MAP EXPANSION FUNCTIONS ///////////////////////////////////////////////////
 
-    //TODO Jesus: Fix the expansion to match the with and compile everything into a class to organize it
     @SuppressLint("Recycle")
     private fun expandFrameLayout() {
         // Define the original height and width for the mapWindow
