@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">GeoremCompose</string>
+    <string name="placeholder_search">Search</string>
+    <string name="reminder_placeholder">Reminder</string>
+
+<!--    Test Value in reminder List Group-->
+    <string name="SampleText_1">Favorites</string>
+    <string name="SampleText_2">Scheduled</string>
+    <string name="SampleText_3">Others</string>
+    <string name="SampleText_4">Tomorrow</string>
+    <string name="SampleText_5">Routine</string>
+
+<!--    Titles-->
+    <string name="home_screen_title">Groups</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+<!--    Maps IDs-->
+    <string name="map_id">1b5333b92ea1af56</string>
+
+
+</resources>
